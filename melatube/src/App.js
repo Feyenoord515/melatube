@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import getYouTubeVideos from './getYouTubeVideos';
 
-function App() {
+const App = () => {
+  const [videos, setVideos] = useState([]);
+
+  const searchVideos = async (query) => {
+    const videos = await getYouTubeVideos(query);
+    setVideos(videos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input type="text" onChange={(e) => searchVideos(e.target.value)} />
+      {videos.map((video) => (
+        <div key={video.id.videoId}>
+          <h2>{video.snippet.title}</h2>
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${video.id.videoId}`}
+           title={video.snippet.title}
+            allowFullScreen
+          ></iframe>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
