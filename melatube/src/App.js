@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import getYouTubeVideos from './getYouTubeVideos';
 import './tailwind.css'; 
 import axios from 'axios';
+import Navbar from './components/Navbar';
+import ChannelList from './components/ChannelList';
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -32,26 +34,29 @@ const App = () => {
   }, []);
 
   return (
+    <div>
+      <Navbar />
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Canales para niños en YouTube</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <ChannelList channels={channels} />
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {channels.map((channel) => (
-    <div key={channel.id.channelId} className="border border-gray-300 p-4 rounded">
+        <div key={channel.id.channelId} className="border border-gray-300 p-4 rounded">
       <a href={`https://www.youtube.com/channel/${channel.id.channelId}`} target="_blank" rel="noopener noreferrer">
         <img
           src={channel.snippet.thumbnails.medium.url}
           alt={channel.snippet.title}
           className="w-full h-48 object-cover rounded mb-2"
-        />
+          />
         <h2 className="text-xl font-bold mb-2">{channel.snippet.title}</h2>
         <p className="text-gray-700">{channel.snippet.description}</p>
       </a>
     </div>
   ))}
    </div>
-   
+    */}
    
     
+  </div>
     <div> 
        
       <input type="text" onChange={(e) => searchVideos(e.target.value)} />
