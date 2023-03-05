@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import getYouTubeVideos from './getYouTubeVideos';
+// import getYouTubeVideos from './getYouTubeVideos';
 import './tailwind.css'; 
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import ChannelList from './components/ChannelList';
+import SearchVideos from './components/SearchVideos';
 
 const App = () => {
-  const [videos, setVideos] = useState([]);
+  // const [videos, setVideos] = useState([]);
   const [channels, setChannels] = useState([]);
 
 
-  const searchVideos = async (query) => {
-    const videos = await getYouTubeVideos(query);
-    setVideos(videos);
-  };
+  // const searchVideos = async (query) => {
+  //   const videos = await getYouTubeVideos(query);
+  //   setVideos(videos);
+  // };
 
   useEffect(() => {
     axios.get('https://www.googleapis.com/youtube/v3/search', {
@@ -36,10 +37,11 @@ const App = () => {
   return (
     <div className="bg-pink-200">
       <Navbar />
+      <SearchVideos />
     <div className="container mx-auto p-4">
     <ChannelList channels={channels} />   
   </div>
-    <div> 
+    {/* <div> 
        
       <input type="text" onChange={(e) => searchVideos(e.target.value)} />
       {videos.map((video) => (
@@ -55,6 +57,7 @@ const App = () => {
         </div>
       ))}
     </div>
+      */}
       </div>
   );
 };

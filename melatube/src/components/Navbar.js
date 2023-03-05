@@ -6,7 +6,9 @@ const Navbar = () => {
    <div className="flex items-center justify-between bg-green-500 p-4">
   <a href="#" className="text-white font-bold text-2xl">
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" alt="Logo" className="w-10 h-10 mr-2" />
-    Canales para niños en YouTube
+    <h1 className="text-4xl font-bold mb-4 text-pink-500">
+  Mela <span className="text-blue-300">Tube</span>
+</h1>
   </a>
 </div>
       
