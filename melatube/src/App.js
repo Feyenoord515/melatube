@@ -27,21 +27,26 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-pink-200">
+    // <
+    <div className="bg-pink-200 min-h-screen">
+      <header className="bg-pink-500 text-white py-4">
+        <h1 className="text-center font-bold text-2xl">Mi aplicación para niños</h1>
+      </header>
       <Navbar />
-      <div className="flex">
-        <div className="w-1/4 p-4">
+      <div className="flex flex-col md:flex-row md:justify-center md:items-start md:mx-4">
+        <div className="w-full md:w-1/2 p-4">
           <SearchVideos />
         </div>
-        <div className="w-1/2 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-4">
-            <h1 className="text-2xl font-bold mb-4">Canales para niños</h1>
-            <ChannelList channels={channels} />
-          </div>
+        <div className="w-full border-l-2 border-gray-300 md:w-1/2 p-4">
+          <ChannelList channels={channels} />
         </div>
       </div>
+      <footer className="bg-pink-500 text-white py-4">
+        <p className="text-center">&copy; 2023 Mi aplicación para niños</p>
+      </footer>
     </div>
   );
 };
+  
 
 export default App;
