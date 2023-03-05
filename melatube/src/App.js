@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import getYouTubeVideos from './getYouTubeVideos';
 import './tailwind.css'; 
 import axios from 'axios';
 import Navbar from './components/Navbar';
@@ -7,14 +6,7 @@ import ChannelList from './components/ChannelList';
 import SearchVideos from './components/SearchVideos';
 
 const App = () => {
-  // const [videos, setVideos] = useState([]);
   const [channels, setChannels] = useState([]);
-
-
-  // const searchVideos = async (query) => {
-  //   const videos = await getYouTubeVideos(query);
-  //   setVideos(videos);
-  // };
 
   useEffect(() => {
     axios.get('https://www.googleapis.com/youtube/v3/search', {
@@ -37,28 +29,18 @@ const App = () => {
   return (
     <div className="bg-pink-200">
       <Navbar />
-      <SearchVideos />
-    <div className="container mx-auto p-4">
-    <ChannelList channels={channels} />   
-  </div>
-    {/* <div> 
-       
-      <input type="text" onChange={(e) => searchVideos(e.target.value)} />
-      {videos.map((video) => (
-        <div key={video.id.videoId}>
-          <h2>{video.snippet.title}</h2>
-          <iframe
-            width="560"
-            height="315"
-            src={`https://www.youtube.com/embed/${video.id.videoId}`}
-            title={video.snippet.title}
-            allowFullScreen
-            ></iframe>
+      <div className="flex">
+        <div className="w-1/4 p-4">
+          <SearchVideos />
         </div>
-      ))}
-    </div>
-      */}
+        <div className="w-1/2 p-4">
+          <div className="bg-white rounded-lg shadow-lg p-4">
+            <h1 className="text-2xl font-bold mb-4">Canales para niños</h1>
+            <ChannelList channels={channels} />
+          </div>
+        </div>
       </div>
+    </div>
   );
 };
 
