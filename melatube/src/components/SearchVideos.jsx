@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import getYouTubeVideos from './getYouTubeVideos';
+import VideoList from './VideoList';
 
 const SearchVideos = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -20,8 +21,8 @@ const SearchVideos = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <form onSubmit={handleSubmit} className="flex items-center my-8">
+    <div className="bg-gray-100 p-4 rounded-lg w-full">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="searchInput" className="sr-only">
           Buscar videos en YouTube
         </label>
@@ -31,7 +32,7 @@ const SearchVideos = () => {
           placeholder="Buscar videos en YouTube"
           value={searchQuery}
           onChange={handleInputChange}
-          className="bg-white border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mr-4"
+          className="bg-white border-2 border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
         />
         <button
           type="submit"
@@ -40,27 +41,7 @@ const SearchVideos = () => {
           Buscar
         </button>
       </form>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        {videos.map((video) => (
-          <div
-            key={video.id.videoId}
-            className="bg-white rounded-lg shadow-lg p-6"
-          >
-            <h2 className="text-lg font-bold mb-2">{video.snippet.title}</h2>
-            <div className="h-48 mb-4">
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${video.id.videoId}`}
-                title={video.snippet.title}
-                allowFullScreen
-              ></iframe>
-            </div>
-            <p className="text-gray-700 text-sm">{video.snippet.description}</p>
-          </div>
-        ))}
-      </div>
+      {videos.length > 0 && <VideoList videos={videos} />}
     </div>
   );
 };
