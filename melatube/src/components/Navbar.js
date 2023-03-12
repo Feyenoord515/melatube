@@ -1,10 +1,21 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { BeakerIcon } from '@heroicons/react/24/solid';
 import { GiftIcon } from '@heroicons/react/24/outline';
 import { HeartIcon, EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 
 
 const Navbar = () => {
+
+  const history = useHistory();
+
+  const handleInicioClick = () => {
+    window.location.reload();
+  }
+
+  const handleCanalesClick = () => {
+    history.push('/channel-list');
+  }
   return (
     <nav className="bg-blue-200  border-blue-700 px-4 py-2 flex justify-between items-center">
    <div className="flex items-center justify-between  p-2">
@@ -18,20 +29,20 @@ const Navbar = () => {
 
 </div>
       
-      <ul className="flex justify-end space-x-4">
-        <li>
-          <a href="#" className="text-white hover:text-gray-200">Inicio</a>
-        </li>
-        <li>
-          <a href="#" className="text-white hover:text-gray-200">Canales</a>
-        </li>
-        <li>
-          <a href="#" className="text-white hover:text-gray-200">Acerca de</a>
-        </li>
-  <li>
-    <a href="#" className="bg-white text-blue-500 hover:bg-blue-500 hover:text-white font-bold py-2 px-4 rounded">Regístrate</a>
-  </li>
-      </ul>
+<ul className="flex justify-end space-x-4">
+      <li>
+        <a href="/#" className="text-white hover:text-gray-200" onClick={handleInicioClick}>Inicio</a>
+      </li>
+      <li>
+        <a href="/#" className="text-white hover:text-gray-200" onClick={handleCanalesClick}>Canales</a>
+      </li>
+      <li>
+        <a href="/#" className="text-white hover:text-gray-200">Acerca de</a>
+      </li>
+      <li>
+        <a href="/#" className="bg-white text-blue-500 hover:bg-blue-500 hover:text-white font-bold py-2 px-4 rounded">Regístrate</a>
+      </li>
+    </ul>
     </nav>
     
   );

@@ -13,6 +13,7 @@
     "googleapis": "^112.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.13.8",
     "web-vitals": "^2.1.4"

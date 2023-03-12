@@ -4,18 +4,19 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import ChannelList from './components/ChannelList';
 import SearchVideos from './components/SearchVideos';
-import VideoList from './components/VideoList';
-
-require('dotenv').config();
+// import VideoList from './components/VideoList';
 
 
 
 
+console.log(process.env.REACT_APP_API_KEY)
+
+const apiKey = process.env.REACT_APP_API_KEY.slice(1, -2);
 const App = () => {
   const [channels, setChannels] = useState([]);
-  const [videos, setVideos] = useState([]);
+  // const [videos, setVideos] = useState([]);
+  console.log(apiKey)
   
-
   useEffect(() => {
     axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
@@ -23,7 +24,7 @@ const App = () => {
         q: 'canales para niños',
         type: 'channel',
         maxResults: 12,
-        key: 'AIzaSyChHbmgbhUd0OeXvG_RLnLSAaSQP7J7HXo',
+        key: apiKey,
       },
     })
       .then(response => {
@@ -34,24 +35,24 @@ const App = () => {
       });
   }, []);
 
-  const handleSearchVideos = (query) => {
-    // buscar videos con la consulta proporcionada
-    axios.get('https://www.googleapis.com/youtube/v3/search', {
-      params: {
-        part: 'snippet',
-        q: query,
-        type: 'video',
-        maxResults: 10,
-        key: 'AIzaSyChHbmgbhUd0OeXvG_RLnLSAaSQP7J7HXo',
-      },
-    })
-      .then(response => {
-        setVideos(response.data.items);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // const handleSearchVideos = (query) => {
+  //   // buscar videos con la consulta proporcionada
+  //   axios.get('https://www.googleapis.com/youtube/v3/search', {
+  //     params: {
+  //       part: 'snippet',
+  //       q: query,
+  //       type: 'video',
+  //       maxResults: 10,
+  //       key: 'AIzaSyChHbmgbhUd0OeXvG_RLnLSAaSQP7J7HXo',
+  //     },
+  //   })
+  //     .then(response => {
+  //       setVideos(response.data.items);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
 
   return (
